@@ -32,9 +32,10 @@ list_delete(list_t *list) {
 	  break;
 	}
 	free (*p);
+	*p = 0x0;
 	++p;
-	list->size--;
-  } while (list->size);
+	list->curr--;
+  } while (list->curr);
   list->size = 0x0;
   free (list->data);
   free (list);
