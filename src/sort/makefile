@@ -19,13 +19,14 @@
 OUTDIR=../../bin
 OUT=$(OUTDIR)/sort
 EXTSRCDIR=../list
-SRC=main.c $(EXTSRCDIR)/list_add.c $(EXTSRCDIR)/list_create.c $(EXTSRCDIR)/list_delete.c $(EXTSRCDIR)/list_iter.c $(EXTSRCDIR)/list_sort.c
-OBJ=$(SRC:%.c=%.o)
+EXTSRC=$(EXTSRCDIR)/list_add.c $(EXTSRCDIR)/list_create.c $(EXTSRCDIR)/list_delete.c $(EXTSRCDIR)/list_iter.c $(EXTSRCDIR)/list_sort.c
+SRC=main.c $(EXTSRC)
+OBJ=$(SRC:%.c=%.o) $(EXTSRC:%.c=%.o)
 CFLAGS=$(DEBUG) -I ../../include
 
 .PHONY: clean
 
-all: $(OUT)
+all: $(OUTDIR) $(OUT) 
 
 $(OUT): $(OBJ)
 	$(CC) $(LDFLAGS) $^ -o $@
@@ -35,8 +36,8 @@ $(OUTDIR):
 
 $(OBJ): $(SRC)
 
-$(OUTDIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $(OUTDIR)/$@
+%.o: %.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	\rm -f $(OBJ)
