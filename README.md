@@ -43,3 +43,11 @@ gerado automaticamente pelo makefile
 
 O código em questão está sob a licença GPL e pode ser copiado, modificado e
 utilizado de acordo com os termos da licença.
+
+## O que este código faz?
+
+Este código implementa uma versão super-simplificada do utilitário _sort_. A sua
+função é ler linhas da entrada padrão e ordená-las alfabeticamente.
+
+O utilitário faz uso de vetores infinitos para a coleção de texto da linha de
+comando.

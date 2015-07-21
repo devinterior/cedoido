@@ -40,7 +40,9 @@ main(void) {
 	strcpy (read_buf, buf);
 	/* Deletes the trailing \n */
 	read_buf[len - 1] = '\0';
-	list_add(list, read_buf);
+	if (list_add(list, read_buf)) {
+	  return -1;
+	}
   }
   list_sort(list, sort_callback);
   list_iter (list, show_item);
