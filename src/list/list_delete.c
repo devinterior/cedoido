@@ -28,14 +28,11 @@ list_delete(list_t *list) {
   }
   char **p = list->data;
   do {
-	if (! *p) {
-	  break;
-	}
 	free (*p);
 	*p = 0x0;
 	++p;
 	list->curr--;
-  } while (list->curr);
+  } while (list->curr && *p);
   list->size = 0x0;
   free (list->data);
   free (list);
