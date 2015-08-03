@@ -1,5 +1,5 @@
 #
-# Main module of the sort command
+# Sort build makefile
 #
 # Copyright (C) 2015 - Ronaldo Faria Lima
 #	
@@ -17,14 +17,16 @@
 # this program.  If not, see <http://www.gnu.org/licenses/>.
 
 OUTDIR=../../bin
-OUT=$(OUTDIR)/list_test
-SRC=list_add.c list_iter.c list_create.c list_delete.c list_sort.c list_bubble_sort.c main.c
-OBJ=$(SRC:%.c=$(OUTDIR)/%.o)
+OUT=$(OUTDIR)/bubble_sort
+EXTSRCDIR=../list
+EXTSRC=$(EXTSRCDIR)/list_add.c $(EXTSRCDIR)/list_create.c $(EXTSRCDIR)/list_delete.c $(EXTSRCDIR)/list_iter.c $(EXTSRCDIR)/list_sort.c $(EXTSRCDIR)/list_bubble_sort.c
+SRC=main.c $(EXTSRC)
+OBJ=$(SRC:%.c=%.o) $(EXTSRC:%.c=%.o)
 CFLAGS=$(DEBUG) -I ../../include
 
 .PHONY: clean
 
-all: $(OUT)
+all: $(OUTDIR) $(OUT) 
 
 $(OUT): $(OBJ)
 	$(CC) $(LDFLAGS) $^ -o $@
@@ -34,7 +36,7 @@ $(OUTDIR):
 
 $(OBJ): $(SRC)
 
-$(OUTDIR)/%.o: %.c
+%.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:

@@ -21,6 +21,7 @@ OUTPUT=bin
 all: $(OUTPUT)
 	cd src/list && $(MAKE)
 	cd src/sort && $(MAKE)
+	cd src/bubble && $(MAKE)
 
 $(OUTPUT):
 	mkdir $@
@@ -28,4 +29,5 @@ $(OUTPUT):
 clean:
 	cd src/list && $(MAKE) clean
 	cd src/sort && $(MAKE) clean
+	cd src/bubble && $(MAKE) clean
 	rmdir $(OUTPUT)

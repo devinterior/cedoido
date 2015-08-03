@@ -49,4 +49,7 @@ list_iter(list_t *, list_callback_t);
 extern void
 list_sort(list_t *, list_comp_t);
 
+extern void
+list_bubble_sort(list_t *, list_comp_t);
+
 #endif
