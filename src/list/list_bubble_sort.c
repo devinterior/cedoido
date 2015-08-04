@@ -1,5 +1,5 @@
 /*
- * Iterates through the entire list and call a callback for each found item
+ * Orders a list using the bubble sort algorithm
  *
  * Copyright (C) 2015 - Ronaldo Faria Lima
  *	

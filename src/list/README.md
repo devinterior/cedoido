@@ -19,5 +19,5 @@ em pacotes que permitirão a leitura e escrita de forma ótima.
 ## Patterns
 
 Observe que as rotinas são orientadas ao objeto. Apesar da estrutura list_t não
-ser opaca, as funçòes funcionam como se fossem métodos, com direito a um
+ser opaca, as funções funcionam como se fossem métodos, com direito a um
 construtor e um destrutor da classe.
