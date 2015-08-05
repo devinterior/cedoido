@@ -19,6 +19,7 @@
 
 #include <string.h>
 #include "demo_list.h"
+#include "demo_instr.h"
 
 list_t *
 list_create (void) {
@@ -26,5 +27,10 @@ list_create (void) {
   if (list) {
 	memset (list, 0x0, sizeof(list_t));
   }
+#ifndef NDEBUG
+  else {
+	DBGPRINT("Failed to get memory for list creation: %s - %d", __FILE__, __LINE__);
+  }
+#endif
   return list;
 }

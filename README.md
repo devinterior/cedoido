@@ -28,6 +28,10 @@ Para reiniciar a compilação:
 
 `make clean`
 
+Para compilar todo o código para depuração:
+
+`make DEBUG=1`
+
 ## Organização do Código
 
 Seguiu-se a organização padrão de códigos escritos em C:
@@ -51,3 +55,8 @@ função é ler linhas da entrada padrão e ordená-las alfabeticamente.
 
 O utilitário faz uso de vetores infinitos para a coleção de texto da linha de
 comando.
+
+O utilitário _bubble_sort_ também é uma versão super-simplificada do utilitário
+_sort_. Porém, ele ordena a entrada usando o algoritmo _insertion sort_, que foi
+implementado para esta demonstração.
+

@@ -20,14 +20,23 @@ OUTDIR=../../bin
 OUT=$(OUTDIR)/list_test
 SRC=list_add.c list_iter.c list_create.c list_delete.c list_sort.c list_bubble_sort.c main.c
 OBJ=$(SRC:%.c=$(OUTDIR)/%.o)
-CFLAGS=$(DEBUG) -I ../../include
+CFLAGS=-I ../../include
+ifneq ($(DEBUG), 1)
+	CFLAGS:=$(CFLAGS) -DNDEBUG
+	MESSAGE="produção"
+else
+	MESSAGE="depuração"
+	CFLAGS:=$(CFLAGS) -g
+endif
 
 .PHONY: clean
 
 all: $(OUT)
+	@echo "Feito!"
 
 $(OUT): $(OBJ)
-	$(CC) $(LDFLAGS) $^ -o $@
+	@$(CC) $(LDFLAGS) $^ -o $@
+	@echo "Ligando..."
 
 $(OUTDIR):
 	mkdir $@
@@ -35,8 +44,10 @@ $(OUTDIR):
 $(OBJ): $(SRC)
 
 $(OUTDIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
-
+	@$(CC) -c $(CFLAGS) $< -o $@
+	@echo "\tCompilando $< para $(MESSAGE)"
 clean:
-	\rm -f $(OBJ)
-	\rm -f $(OUT)
+	@echo "Limpando..."
+	@\rm -f $(OBJ)
+	@\rm -f $(OUT)
+	@echo "Feito!"

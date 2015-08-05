@@ -22,14 +22,25 @@ EXTSRCDIR=../list
 EXTSRC=$(EXTSRCDIR)/list_add.c $(EXTSRCDIR)/list_create.c $(EXTSRCDIR)/list_delete.c $(EXTSRCDIR)/list_iter.c $(EXTSRCDIR)/list_sort.c
 SRC=main.c $(EXTSRC)
 OBJ=$(SRC:%.c=%.o) $(EXTSRC:%.c=%.o)
-CFLAGS=$(DEBUG) -I ../../include
+CFLAGS=-I ../../include
+
+ifneq ($(DEBUG), 1)
+	CFLAGS:=$(CFLAGS) -DNDEBUG
+	MESSAGE="produção"
+else
+	MESSAGE="depuração"
+	CFLAGS:=$(CFLAGS) -g
+endif
+
 
 .PHONY: clean
 
-all: $(OUTDIR) $(OUT) 
+all: $(OUTDIR) $(OUT)
+	@echo "Feito!"
 
 $(OUT): $(OBJ)
-	$(CC) $(LDFLAGS) $^ -o $@
+	@$(CC) $(LDFLAGS) $^ -o $@
+	@echo "Ligando..."
 
 $(OUTDIR):
 	mkdir $@
@@ -37,8 +48,11 @@ $(OUTDIR):
 $(OBJ): $(SRC)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	@$(CC) -c $(CFLAGS) $< -o $@
+	@echo "\tCompilando $< para $(MESSAGE)"
 
 clean:
-	\rm -f $(OBJ)
-	\rm -f $(OUT)
+	@echo "Limpando..."
+	@\rm -f $(OBJ)
+	@\rm -f $(OUT)
+	@echo "Feito!"

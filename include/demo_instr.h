@@ -1,5 +1,5 @@
 /*
- * Deletes the entire list
+ * Declarations for code instrumentation
  *
  * Copyright (C) 2015 - Ronaldo Faria Lima
  *	
@@ -17,26 +17,15 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string.h>
-#include <assert.h>
-#include "demo_list.h"
-#include "demo_instr.h"
+#ifndef DEMO_INSTR_H_
+#define DEMO_INSTR_H_
 
-void
-list_delete(list_t *list) {
-  assert(list != NULL);
-  if (list->size == 0x0l) {
-	DBGPRINT("Empty list @ %s - %d\n", __FILE__, __LINE__);
-	return;
-  }
-  char **p = list->data;
-  do {
-	free (*p);
-	*p = 0x0;
-	++p;
-	list->curr--;
-  } while (list->curr && *p);
-  list->size = 0x0;
-  free (list->data);
-  free (list);
-}
+#include <stdio.h>
+
+#ifndef NDEBUG
+#define DBGPRINT(...) fprintf(stderr, __VA_ARGS__)
+#else
+#define DBGPRINT(...)
+#endif
+
+#endif

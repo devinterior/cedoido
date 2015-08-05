@@ -18,16 +18,28 @@
 
 OUTPUT=bin
 
-all: $(OUTPUT)
-	cd src/list && $(MAKE)
-	cd src/sort && $(MAKE)
-	cd src/bubble && $(MAKE)
+all: splash $(OUTPUT)
+	@echo "Compilando lists..."
+	@cd src/list && $(MAKE)
+	@echo "Compilando sort..."
+	@cd src/sort && $(MAKE)
+	@echo "Compilando bubble..."
+	@cd src/bubble && $(MAKE)
+	@echo "\nMódulos compilados no diretório bin.\n"
 
 $(OUTPUT):
-	mkdir $@
+	@echo "Criando diretório de saída..."
+	@mkdir $@
+	@echo "Diretório criado."
 
 clean:
-	cd src/list && $(MAKE) clean
-	cd src/sort && $(MAKE) clean
-	cd src/bubble && $(MAKE) clean
-	rmdir $(OUTPUT)
+	@cd src/list && $(MAKE) clean
+	@cd src/sort && $(MAKE) clean
+	@cd src/bubble && $(MAKE) clean
+	@rmdir $(OUTPUT)
+
+splash:
+	@echo "DEV INTERIOR C É DOIDO"
+	@echo "Compilação do código-fonte de exemplo"
+	@echo "Autor: Ronaldo F. Lima <ronaldo@nineteen.com.br>"
+	@echo "----"

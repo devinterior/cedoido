@@ -21,11 +21,13 @@
 #include <errno.h>
 #include <assert.h>
 #include "demo_list.h"
+#include "demo_instr.h"
 
 int
 list_add(list_t *list, char *elem) {
   assert(list != NULL);
   assert(elem != NULL);
+  DBGPRINT("In list_add, %s - %d\n", __FILE__,  __LINE__);
   if (list->curr >= list->size) {
 	/* Resizes the list table */
 	list->size += BUFSIZ;
@@ -33,6 +35,7 @@ list_add(list_t *list, char *elem) {
 	if (!newbuf) {
 	  /* No memory. Destroy everything and return an error status */
 	  list_delete(list);
+	  DBGPRINT("Low memory error in list_add, %s - %d\n", __FILE__,  __LINE__);
 	  return ENOMEM;
 	}
 	/* Necessary in order to deallocate unused arenas later */

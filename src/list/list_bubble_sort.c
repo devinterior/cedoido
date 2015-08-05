@@ -22,6 +22,7 @@
 #include <string.h>
 #include <assert.h>
 #include "demo_list.h"
+#include "demo_instr.h"
 
 static void
 bubble_sort(void *, size_t, size_t, int (*)(const void *, const void *));
