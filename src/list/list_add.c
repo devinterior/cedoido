@@ -17,6 +17,8 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string.h>
+#include <errno.h>
 #include <assert.h>
 #include "demo_list.h"
 

@@ -1,4 +1,4 @@
-/*
+/*dd
  * Main module of the list test application
  *
  * Copyright (C) 2015 - Ronaldo Faria Lima
@@ -17,6 +17,7 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string.h>
 #include "demo_list.h"
 
 static void
@@ -43,3 +44,4 @@ static void
 show_item (const char *p) {
   printf ("Item [%s]\n", p);
 }
+ 
