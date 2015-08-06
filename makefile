@@ -25,6 +25,9 @@ all: splash $(OUTPUT)
 	@cd src/sort && $(MAKE)
 	@echo "Compilando bubble..."
 	@cd src/bubble && $(MAKE)
+	@echo "Compilando cpfcheck..."
+	@cd src/cpfcheck && $(MAKE)
+
 	@echo "\nMódulos compilados no diretório bin.\n"
 
 $(OUTPUT):
@@ -32,10 +35,11 @@ $(OUTPUT):
 	@mkdir $@
 	@echo "Diretório criado."
 
-clean:
+clean: splash
 	@cd src/list && $(MAKE) clean
 	@cd src/sort && $(MAKE) clean
 	@cd src/bubble && $(MAKE) clean
+	@cd src/cpfcheck && $(MAKE) clean
 	@rmdir $(OUTPUT)
 
 splash:

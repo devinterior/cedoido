@@ -60,3 +60,6 @@ O utilitário _bubble_sort_ também é uma versão super-simplificada do utilit�
 _sort_. Porém, ele ordena a entrada usando o algoritmo _insertion sort_, que foi
 implementado para esta demonstração.
 
+Há também um pequeno exemplo que valida um número de CPF quanto ao seu dígito
+verificador. Este algoritmo é bem conhecido na internet e o princípio
+demonstrado é a conversão de tipos e aritmética de ponteiros.
