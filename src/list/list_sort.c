@@ -22,6 +22,10 @@
 #include <assert.h>
 #include "demo_list.h"
 
+/*
+ * qsort é uma função da STDC. Esta função é apenas um front-end para o
+ * qsort. Observe que o qsort funciona com callbacks e é um algoritmo genérico.
+ */
 void
 list_sort(list_t *list, list_comp_t callback) {
   qsort (list->data, list->curr, sizeof(char *), callback);

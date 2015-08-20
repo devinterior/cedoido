@@ -22,10 +22,25 @@
 #include "demo_list.h"
 #include "demo_instr.h"
 
+/*
+ * Esta rotina cria uma lista. Observe que a lista é criada dinamicamente,
+ * através da alocação de memória para o tipo list_t. Há um pattern aqui muito
+ * comum em rotinas de alocação de memória: se a alocação falhar, a rotina
+ * retorna um pointer nulo. Isso fica implícito no uso do malloc. Sempre que o
+ * malloc falha, ele retorna NULL, que é uma macro que expande para (void *)0x0.
+ */
 list_t *
 list_create (void) {
   list_t *list = (list_t *)malloc(sizeof (list_t));
   if (list) {
+	/* 
+	 * Observe o uso de memset neste contexto. malloc devolve a memória, mas sem
+	 * inicialização do conteúdo. Ou seja, o que quer que malloc devolva, contém
+	 * dados arbitrários. Assim, o memset é usado aqui para escrever na nova
+	 * arena de memória um padrão. No caso, escolhi o número 0x0 para ser este
+	 * padrão. Este é um pattern muito comum na inicialização de arenas de
+	 * memória recém-criadas. 
+	 */
 	memset (list, 0x0, sizeof(list_t));
   }
 #ifndef NDEBUG

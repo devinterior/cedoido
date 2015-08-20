@@ -23,6 +23,14 @@
 #include "demo_list.h"
 #include "demo_instr.h"
 
+/*
+ * A lista é uma estrutura que contém dentro de si um vetor de
+ * ponteiros. Observe que há um comportamento hierárquico na limpeza da lista:
+ * primeiro passeamos na lista desalocando cada item do vetor e, por fim,
+ * desalocamos o vetor e a lista propriamente dita. Como cada item da lista é
+ * alocado dinamicamente, essa ação é requerida para evitar vazamentos de
+ * memória.
+ */
 void
 list_delete(list_t *list) {
   assert(list != NULL);

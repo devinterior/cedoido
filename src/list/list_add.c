@@ -23,6 +23,18 @@
 #include "demo_list.h"
 #include "demo_instr.h"
 
+/*
+ * Esta rotina adiciona um elemento à lista. Nesta implementação, o elemento é
+ * uma cadeia de caracteres. Porém, poder-se-ia implementar uma rotina mais
+ * geral que trata-se tipos arbitrários, através do uso de pointers para void
+ * para o elemento.
+ *
+ * Esta rotina baseia-se no princípio de que sempre redimensionaremos a lista
+ * quando necessário. Da primeira vez que é executada, a lista está vazia e não
+ * tem memória alocada. Neste cenário, realloc, a função de alocação que usei da
+ * lib STDC, irá funcionar como um malloc comum. Porém, nas chamadas
+ * subsequentes, a arena de memória apontada por list->data será redimensionada.
+ */
 int
 list_add(list_t *list, char *elem) {
   assert(list != NULL);
@@ -38,7 +50,17 @@ list_add(list_t *list, char *elem) {
 	  DBGPRINT("Low memory error in list_add, %s - %d\n", __FILE__,  __LINE__);
 	  return ENOMEM;
 	}
-	/* Necessary in order to deallocate unused arenas later */
+	/*
+	 * Observe o deslocamento de newbuf para a inicialização por memset. Como
+	 * partimos da suposição que a lista sempre será redimensionada, é
+	 * necessário inicializar a memória somente dos novos itens e não dos itens
+	 * existentes. Por este motivo, calcula-se o deslocamento da lista com
+	 * relação ao que já foi usado e, ainda, o tamanho desta arena nova.
+	 *
+	 * Quando for executada da primeira vez, curr = 0 e com isso TODA a lista
+	 * será inicializada. Deixamos para adicionar o elemnto à lista depois de
+	 * realizada esta inicialização.
+	 */
 	memset (newbuf + list->curr, 0x0, list->size - list->curr);
 	list->data = newbuf;
   }
