@@ -22,6 +22,14 @@
 
 #include <stdio.h>
 
+/*
+ * Observe a compilação condicionada. A macro NDEBUG é usada pela biblioteca
+ * STDC para evitar compilar instrumentação, em especial, pelo cabeçalho
+ * assert.h. Neste caso, se não estiver definida a macro DBGPRINT torna-se
+ * definida. Caso contrário, a macro expande para absolutamente nada. Este é um
+ * truque muito interessante que usa o pré-processador C para gerar código de
+ * forma condicionada.
+ */
 #ifndef NDEBUG
 #define DBGPRINT(...) fprintf(stderr, __VA_ARGS__)
 #else
