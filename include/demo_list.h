@@ -21,7 +21,6 @@
 #define DEMO_LIST_H_
 
 #include <stdio.h>
-#include <stdlib.h>
 
 typedef struct {
   size_t curr;
